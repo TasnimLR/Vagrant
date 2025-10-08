@@ -12,15 +12,6 @@ Vagrant.configure("2") do |config|
       vb.memory = 512
       vb.cpus = 1
     end
-
-    server.vm.provision "shell", inline: <<-SHELL
-      echo "== Configuration SSH sur tasnimS =="
-      sudo apt-get update -y
-      sudo apt-get install -y openssh-server
-      mkdir -p /home/vagrant/.ssh
-      cat /vagrant/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
-      chmod 600 /home/vagrant/.ssh/authorized_keys
-    SHELL
   end
 
   # ====== MACHINE SERVERWORKER ======
@@ -33,14 +24,5 @@ Vagrant.configure("2") do |config|
       vb.memory = 512
       vb.cpus = 1
     end
-
-    worker.vm.provision "shell", inline: <<-SHELL
-      echo "== Configuration SSH sur tasnimSW =="
-      sudo apt-get update -y
-      sudo apt-get install -y openssh-server
-      mkdir -p /home/vagrant/.ssh
-      cat /vagrant/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
-      chmod 600 /home/vagrant/.ssh/authorized_keys
-    SHELL
   end
 end
