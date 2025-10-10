@@ -1,0 +1,10 @@
+﻿Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  config.vm.hostname = "ansible-k3s-apps"
+  config.vm.network "private_network", ip: "192.168.56.12"
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+    ansible.inventory_path = "inventory.ini"
+  end
+end
